@@ -1,0 +1,125 @@
+int led_1=8;
+int led_2=9;
+int led_3=10;
+int led_4=11;
+int led_5=12;
+int led_6=13;
+int sw_1=7;
+int sw_2=6;
+int pulsador=5;
+int leds1 [6]={led_1,led_2,led_3,led_4,led_5,led_6};
+int leds2 [3]={led_2,led_4,led_6};  
+int contador=0;
+int cont=0;
+int i=0;
+int dato=0;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(led_1,OUTPUT);
+  pinMode(led_2,OUTPUT);
+  pinMode(led_3,OUTPUT);
+  pinMode(led_4,OUTPUT);
+  pinMode(led_5,OUTPUT);
+  pinMode(led_6,OUTPUT);
+  pinMode(sw_1,INPUT);
+  pinMode(sw_2,INPUT);
+  pinMode(pulsador,INPUT);
+}
+
+void loop() {
+  
+  
+  if(digitalRead(sw_1)==HIGH&&digitalRead(sw_2)==LOW){          // leds pares
+    contador=1;
+    for(;contador<6;contador=contador+2){
+      digitalWrite(leds1[contador],HIGH);
+      delay(200);
+      digitalWrite(leds1[contador],LOW);
+      delay(200);
+      }
+    for(;contador>0;contador=contador-2){
+      digitalWrite(leds1[contador],HIGH);
+      delay(200);
+      digitalWrite(leds1[contador],LOW);
+      delay(200);
+      }
+      contador=0;
+  }
+                                                            // leds impares
+
+    if(digitalRead(sw_1)==HIGH&&digitalRead(sw_2)==HIGH){
+      
+      for(;contador<6;contador=contador+2){
+        digitalWrite(leds1[contador],HIGH);
+        delay(200);
+        digitalWrite(leds1[contador],LOW);
+        delay(200);
+        }
+      for(;contador>0;contador=contador-2){
+        digitalWrite(leds1[contador],HIGH);
+        delay(200);
+        digitalWrite(leds1[contador],LOW);
+        delay(200);
+        }
+        contador=0;
+    }
+                                                            //leds pares random
+
+    if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==HIGH){
+      
+      for(;i<6;i++){
+      dato=random(3);
+      digitalWrite(leds2[dato],HIGH);
+      delay(200);
+      digitalWrite(leds2[dato],LOW);
+      delay(200);
+      }
+      i=0;
+    }
+    
+                                                          // leds random veces, random leds 
+
+  if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==LOW){
+    
+    int ciclos=0;
+    ciclos=random(3,8);
+    
+    for(;ciclos<=8;ciclos=ciclos++){
+    dato=random(4);
+      
+      if(dato==1){
+      digitalWrite(led_6,HIGH); 
+      digitalWrite(led_1,HIGH);
+      delay(200); 
+
+      digitalWrite(led_6,LOW); 
+      digitalWrite(led_1,LOW);
+      delay(200);  
+      } 
+
+      if(dato==2){
+      digitalWrite(led_5,HIGH); 
+      digitalWrite(led_2,HIGH);
+      delay(200);  
+
+      digitalWrite(led_5,LOW); 
+      digitalWrite(led_2,LOW);
+      delay(200); 
+      }
+
+      if(dato==3){
+      digitalWrite(led_4,HIGH); 
+      digitalWrite(led_3,HIGH);
+      delay(200); 
+
+      digitalWrite(led_4,LOW); 
+      digitalWrite(led_3,LOW);
+      delay(200);  
+      }
+    ciclos=0;
+    }
+   }
+
+}
+  
